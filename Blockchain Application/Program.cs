@@ -8,9 +8,16 @@ namespace Blockchain_Application
         {
             // Adding new block to our blockchain
             Blockchain blockchain = new Blockchain();
+
+            DateTime startTime = DateTime.Now;
+
             blockchain.AddBlock(new Block(DateTime.Now, null, "{ sender: Ruslan, receive: Eyvaz, amount: 2200 }"));
             blockchain.AddBlock(new Block(DateTime.Now, null, "{ sender: Micheal, receive: Phil, amount: 1200 }"));
             blockchain.AddBlock(new Block(DateTime.Now, null, "{ sender: Jay, receive: Kelman, amount: 200 }"));
+
+            DateTime endTime = DateTime.Now;
+            // Now we going to find time difference / how long has one been able to Proof of The Work (POW)
+            Console.WriteLine("Time: "+ (endTime - startTime).ToString());
 
             Console.WriteLine(JsonConvert.SerializeObject(blockchain,Formatting.Indented));
             // Try to check validation state and result is true.

@@ -10,6 +10,7 @@ namespace Blockchain_Application
         public string PreviousHash { get; set; }
         public string Hash { get; set; }
         public string Data { get; set; }
+        public int Nonce { get; set; } = 0;
 
         public Block(DateTime timeStamp, string previousHash, string data)
         {
@@ -23,9 +24,19 @@ namespace Blockchain_Application
         public string CalculateHash()
         {
             SHA256 sha256 = SHA256.Create();
-            byte[] inBytes = Encoding.ASCII.GetBytes($"{TimeStamp}-{PreviousHash ?? ""}-{Data}");
+            byte[] inBytes = Encoding.ASCII.GetBytes($"{TimeStamp}-{PreviousHash ?? ""}-{Data}-{Nonce}");
             byte[] outBytes = sha256.ComputeHash( inBytes );
             return Convert.ToBase64String(outBytes);
+        }
+
+        public void Mine(int difficulty)
+        {
+            string leadingZeros = new string('0', difficulty);
+            while(this.Hash == null || this.Hash.Substring(0,difficulty) != leadingZeros) 
+            {
+                this.Nonce++;
+                this.Hash = this.CalculateHash();
+            }
         }
     }
 }

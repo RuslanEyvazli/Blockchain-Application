@@ -4,6 +4,7 @@ namespace Blockchain_Application
     public class Blockchain
     {
         public IList<Block> Chain;
+        public int difficulty { get; set; } = 3;
 
         public Blockchain()
         {
@@ -28,6 +29,7 @@ namespace Blockchain_Application
             block.Index = latestBlock.Index + 1;
             block.PreviousHash = latestBlock.Hash;
             block.Hash = block.CalculateHash();
+            block.Mine(this.difficulty);
             Chain.Add(block);
         }
         public Block GetLatestBlock()
