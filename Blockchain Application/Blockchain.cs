@@ -35,7 +35,6 @@ namespace Blockchain_Application
             return Chain[Chain.Count - 1];
         }
 
-
         public bool IsValid()
         {
             for (int i = 1; i < Chain.Count; i++)

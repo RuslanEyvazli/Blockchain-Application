@@ -19,6 +19,7 @@ namespace Blockchain_Application
             this.Data = data;
             this.Hash = CalculateHash(); 
         }
+
         public string CalculateHash()
         {
             SHA256 sha256 = SHA256.Create();

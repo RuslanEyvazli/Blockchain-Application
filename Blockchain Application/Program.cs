@@ -12,7 +12,6 @@ namespace Blockchain_Application
             blockchain.AddBlock(new Block(DateTime.Now, null, "{ sender: Micheal, receive: Phil, amount: 1200 }"));
             blockchain.AddBlock(new Block(DateTime.Now, null, "{ sender: Jay, receive: Kelman, amount: 200 }"));
 
-
             Console.WriteLine(JsonConvert.SerializeObject(blockchain,Formatting.Indented));
             // Try to check validation state and result is true.
             Console.Write(blockchain.IsValid()+ "\n");
